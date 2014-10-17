@@ -16,14 +16,14 @@
     "type": "git",
     "url": "https://github.com/drscream/lassie"
   },
-  "keywords": {
+  "keywords": [
     "monitoring",
     "check",
     "tcp",
     "http",
     "alert",
     "notification"
-  },
+  ],
   "dependencies": {
     "colors":      "",
     "nodemailer":  "0.2.4",
