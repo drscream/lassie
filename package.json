@@ -1,16 +1,28 @@
 {
   "author": "Judd Vinet <judd@betsmartmedia.com>",
-  "name": "lassie",
+  "contributors": [{
+    "name": "Thomas Merkel",
+    "email": "tm@core.io"
+  }],
+  "name": "core-lassie",
   "description": "A watchdog service",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "main": "lassie.coffee",
   "bin": "lassie.coffee",
   "engines": {
-  "node": "~0.8.15"
+    "node": "~0.8.15"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/BetSmartMedia/lassie.git"
+    "url": "https://github.com/drscream/lassie"
+  },
+  "keywords": {
+    "monitoring",
+    "check",
+    "tcp",
+    "http",
+    "alert",
+    "notification"
   },
   "dependencies": {
     "colors":      "",
