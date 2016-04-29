@@ -7,14 +7,33 @@ options:
   log:    lassie.log
   pid:    lassie.pid
 
+  # Perform a network-sanity check before testing services; this helps to
+  # reduce the frequency of false-positive alerts that can arise if the
+  # Lassie machine has a degraded network connection.
+  #
+  # If set, Lassie will attempt a TCP connection to the host/port defined
+  # here, and if it fails, it will not perform any service checks until the
+  # next cycle.
+  network_check:
+    host: www.google.com
+    port: 80
+
   # Twilio API credentials
   twilio:
     sid:   TWILIO_SID
     token: TWILIO_TOKEN
     phnum: TWILIO_PHNUM   # outgoing phone number
 
+  # Slack API token and target channels/users
+  slack:
+    token: SLACK_TOKEN
+    channels:
+      - 'monitoring'
+    users:
+      - 'judd'
+
   # Pushover API credentials
-pushover:
+  pushover:
     token: PUSHOVER_APP_TOKEN
 
 #
@@ -24,15 +43,17 @@ alerts:
   notify:
     admin-email:
       type:  email
-      email: admin@example.com
+      to: admin@example.com
+    team-chat:
+      type: slack
+      channels: ['monitoring']
   emerg:
     admin-sms:
       type:  sms
       phone: "+18001234567"
-  panic:
-    admin-pushover:
-      type: pushover
-      key:  USER_API_KEY
+    admin-slack:
+      type: slack
+      users: ['judd']
 
 #
 # CHECKS
@@ -54,3 +75,11 @@ checks:
     # This check must fail twice in a row before we consider it down.
     failures: 2
     alerts:   [emerg, notify]
+
+  site-api:
+    type: rest
+    alerts: [emerg]
+    url: 'https://api.example.com/test_endpoint'
+    headers:
+      accept: application/json
+      x-api-key: abc123456

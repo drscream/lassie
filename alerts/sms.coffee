@@ -1,15 +1,18 @@
 #
 # Alert: SMS
 #
+#
+log = require('../lib/lassie').log
 
 TwilioClient = require('../lib/twilio').Client
 
 twilio = null
 phnum  = null
 
-exports.init = (config) ->
+exports.init = (config, cb) ->
 	twilio = new TwilioClient config.options.twilio.sid, config.options.twilio.token
 	phnum  = config.options.twilio.phnum
+	cb()
 
 exports.run = (checks, alert_params) ->
 	body = ""
@@ -21,5 +24,4 @@ exports.run = (checks, alert_params) ->
 
 	twilio.sendSms phnum, alert_params.phone, body, (err, res) ->
 		if err?
-			console.log "Twilio Error: #{err.message}"
-			return
+			log "Twilio Error: #{err.message}"

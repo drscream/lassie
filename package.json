@@ -6,7 +6,7 @@
   }],
   "name": "core-lassie",
   "description": "A watchdog service",
-  "version": "1.1.0",
+  "version": "1.2.2",
   "main": "lassie.coffee",
   "bin": "lassie.coffee",
   "engines": {
@@ -25,12 +25,14 @@
     "notification"
   ],
   "dependencies": {
-    "colors":      "",
-    "nodemailer":  "0.2.4",
-    "dateformat":  "",
-    "js-yaml":     "",
-    "daemon":      "1.1.0",
-    "node-pushover": ""
+    "coffee-script": "",
+    "colors": "",
+    "daemon": "1.1.0",
+    "dateformat": "",
+    "js-yaml": "",
+    "nodemailer": "0.2.4",
+    "request": "^2.69.0",
+    "slack-client": "^2.0.2"
   },
   "devDependencies": {}
 }
